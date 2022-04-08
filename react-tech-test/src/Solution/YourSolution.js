@@ -2,6 +2,7 @@ import "../AdditionalFiles/App.css";
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { mockFetch } from "../AdditionalFiles/mockFetch";
+import ProfitAfterTax from "./components/ProfitAfterTax";
 
 //This is the API url to fetch from
 const API_URL = "https://matchesfashion.com/api/products";
@@ -28,12 +29,14 @@ function YourSolution() {
       );
   }, [page]);
 
-  console.log(products, "<<<<products");
-  console.log(totalCount, "<<<totalCount");
-  console.log(products.length, "length");
-  console.log(page, "<<<page");
+  // Profit after tax
 
-  console.log(products.length * page, "<<<<totalPages");
+  // console.log(products, "<<<<products");
+  // console.log(totalCount, "<<<totalCount");
+  // console.log(products.length, "length");
+  // console.log(page, "<<<page");
+
+  // console.log(products.length * page, "<<<<totalPages");
 
   return (
     <div className="App">
@@ -46,6 +49,7 @@ function YourSolution() {
             <th>Quantity Sold</th>
             <th>Sold Price</th>
             <th>Cost To Business</th>
+            <th>Profit after Tax</th>
           </tr>
         </thead>
         <tbody>
@@ -56,8 +60,9 @@ function YourSolution() {
                 <td>{product.brand}</td>
                 <td>{product.name}</td>
                 <td>{product.quantitySold}</td>
-                <td>{product.soldPrice}</td>
-                <td>{product.costToBusiness}</td>
+                <td>{`£${product.soldPrice}`}</td>
+                <td>{`£${product.costToBusiness}`}</td>
+                <ProfitAfterTax product={product} TAX_RATE={TAX_RATE} />
               </tr>
             );
           })}
