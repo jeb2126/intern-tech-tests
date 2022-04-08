@@ -19,7 +19,6 @@ function YourSolution() {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log(result, "<<<result");
           setProducts(result.products);
           setTotalCount(result.count);
         },
@@ -28,15 +27,6 @@ function YourSolution() {
         }
       );
   }, [page]);
-
-  // Profit after tax
-
-  // console.log(products, "<<<<products");
-  // console.log(totalCount, "<<<totalCount");
-  // console.log(products.length, "length");
-  // console.log(page, "<<<page");
-
-  // console.log(products.length * page, "<<<<totalPages");
 
   return (
     <div className="App">

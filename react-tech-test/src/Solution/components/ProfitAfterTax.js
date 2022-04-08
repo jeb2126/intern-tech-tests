@@ -27,8 +27,6 @@ const ProfitAfterTax = (props) => {
     totalProfit = netProfit + nonTaxProfit;
   }
 
-  console.log(totalProfit, "<<<total");
-
   return <td>{`£${totalProfit.toFixed(2)}`}</td>;
 };
 
