@@ -2,6 +2,7 @@ import "../AdditionalFiles/App.css";
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { mockFetch } from "../AdditionalFiles/mockFetch";
+import { useParams } from "react-router-dom";
 
 //This is the API url to fetch from
 const API_URL = "https://matchesfashion.com/api/products";
@@ -9,15 +10,24 @@ const TAX_RATE = 0.08;
 
 function YourSolution() {
   const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(0);
 
   // Fetch the product data
   useEffect(() => {
-    mockFetch().then((productsFromApi) => {
-      setProducts(productsFromApi);
-    });
-  }, []);
+    mockFetch(`${API_URL}?page=${page}`)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          console.log(result, "<<<result");
+          setProducts(result.products);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }, [page]);
 
-  console.log(products, "<<<<");
+  console.log(products, "<<<<products");
 
   return (
     <div className="App">
@@ -35,7 +45,7 @@ function YourSolution() {
         <tbody>
           {products.map((product) => {
             return (
-              <tr>
+              <tr key={product.id}>
                 <td>{product.id}</td>
                 <td>{product.brand}</td>
                 <td>{product.name}</td>
