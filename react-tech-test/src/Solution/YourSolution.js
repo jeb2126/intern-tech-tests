@@ -74,7 +74,6 @@ function YourSolution() {
       >
         Previous Page
       </button>
-      {/* check if better way to calculate length */}
       <button
         onClick={() => {
           setPage((currentPage) => currentPage + 1);

@@ -3,7 +3,7 @@ const ProfitAfterTax = (props) => {
   const taxThreshold = 10;
 
   // If 10 or under work out total profit
-  if (props.product.quantitySold < 11) {
+  if (props.product.quantitySold <= taxThreshold) {
     totalProfit =
       (props.product.soldPrice - props.product.costToBusiness) *
       props.product.quantitySold;
